@@ -116,7 +116,8 @@ def main():
     
     # Test on new example
     print("4. Testing on new example...")
-    test_idx = 50  # Use valid index within domain
+    # Ensure test index is within valid range
+    test_idx = min(50, tl.kb.domain_size - 1)
     
     # New cat-like animal
     tl.fact(has_fur, test_idx, value=1.0)

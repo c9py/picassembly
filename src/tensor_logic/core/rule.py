@@ -91,6 +91,9 @@ class Rule:
         # Apply confidence
         result = aggregated * self.confidence
         
+        # Ensure result stays in valid range [0, 1]
+        result = torch.clamp(result, min=0.0, max=1.0)
+        
         return result
     
     def forward_chain(self) -> None:
