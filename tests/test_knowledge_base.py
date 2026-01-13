@@ -69,8 +69,8 @@ class TestKnowledgeBase:
         kb.set_fact("human", "socrates", value=1.0)
         kb.set_fact("human", "plato", value=0.9)
         
-        assert kb.query("human", "socrates") == 1.0
-        assert kb.query("human", "plato") == 0.9
+        assert abs(kb.query("human", "socrates") - 1.0) < 0.01
+        assert abs(kb.query("human", "plato") - 0.9) < 0.01
         assert kb.query("human", "unknown") == 0.0
     
     def test_inference(self):

@@ -37,7 +37,7 @@ class TestPredicate:
         pred.set(5, value=0.7)
         
         assert pred(0).item() == 1.0
-        assert pred(5).item() == 0.7
+        assert abs(pred(5).item() - 0.7) < 0.01
         assert pred(3).item() == 0.0
     
     def test_set_with_string_args(self):
@@ -51,7 +51,7 @@ class TestPredicate:
         val2 = pred("plato").item()
         
         assert val1 == 1.0
-        assert val2 == 0.9
+        assert abs(val2 - 0.9) < 0.01
     
     def test_binary_predicate_operations(self):
         """Test binary predicate operations."""
@@ -62,7 +62,7 @@ class TestPredicate:
         
         assert pred(0, 1).item() == 1.0
         assert pred(0, 2).item() == 1.0
-        assert pred(1, 3).item() == 0.8
+        assert abs(pred(1, 3).item() - 0.8) < 0.01
         assert pred(5, 5).item() == 0.0
     
     def test_get_all_true(self):

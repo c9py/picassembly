@@ -66,8 +66,8 @@ class Rule:
             Truth values for the conclusion
         """
         if fuzzy_ops is None:
-            from tensor_logic.ops import fuzzy_ops as ops
-            fuzzy_ops = ops
+            from tensor_logic.ops import FuzzyOps
+            fuzzy_ops = FuzzyOps()
         
         # Get premise truth values
         premise_values = [p.values for p in self.premise]

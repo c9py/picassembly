@@ -50,9 +50,9 @@ class TestRule:
         rule = Rule(premise=human, conclusion=mortal, confidence=1.0)
         rule.forward_chain()
         
-        # Mortal should now have values
+        # Mortal should now have values (with floating point tolerance)
         assert mortal(0).item() == 1.0
-        assert mortal(1).item() == 0.8
+        assert abs(mortal(1).item() - 0.8) < 0.01
         assert mortal(5).item() == 0.0
     
     def test_rule_with_confidence(self):
@@ -66,8 +66,8 @@ class TestRule:
         rule = Rule(premise=human, conclusion=mortal, confidence=0.7)
         rule.forward_chain()
         
-        # Conclusion should be scaled by confidence
-        assert mortal(0).item() == 0.7
+        # Conclusion should be scaled by confidence (with floating point tolerance)
+        assert abs(mortal(0).item() - 0.7) < 0.01
     
     def test_rule_aggregation_and(self):
         """Test rule with AND aggregation."""
